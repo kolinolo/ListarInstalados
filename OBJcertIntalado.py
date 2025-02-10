@@ -11,7 +11,7 @@ class certInstalado:
         self.validade = None
         self.cnpj = None
         self.origem: str = stringOrigem
-
+        self.thumbPrint = None
 
         self.defineCliente()
         self.defineValidade()
@@ -35,5 +35,17 @@ class certInstalado:
             validadeNO = match.group().replace("NotAfter     : ", "")
 
             self.validade = datetime.strptime(validadeNO, "%d/%m/%Y")
+
+        pass
+
+    def defineThumbPrint(self):
+
+        padraoThumb = re.compile(r"/Thumbprint {3}: .*/gm")
+        TP = padraoThumb.finditer(self.origem)
+
+        for match in TP:
+            self.thumbPrint = match.group().replace("Thumbprint   : ", "")
+
+
 
         pass
