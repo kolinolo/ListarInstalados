@@ -1,16 +1,15 @@
 from datetime import datetime
-import DbLabs
 import re
 
-buscaPJ = DbLabs.buscaDominio().buscaCNPJ
 
 
 class certInstalado:
 
     def __init__(self, stringOrigem):
 
+
         self.validade = None
-        self.cliente = None
+        self.cnpj = None
         self.origem: str = stringOrigem
 
 
@@ -24,7 +23,7 @@ class certInstalado:
 
 
         for match in cnpj:
-            self.cliente = buscaPJ(match.group())
+            self.cnpj = match.group()
 
     def defineValidade(self):
 

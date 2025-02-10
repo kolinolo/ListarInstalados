@@ -1,9 +1,6 @@
 import subprocess
-import re
-import DbLabs
 import OBJcertIntalado
 
-buscaPj = DbLabs.buscaDominio().buscaCNPJ
 regular = r'FriendlyName : (\S ?)*[0-9]{14}'
 
 
@@ -32,7 +29,7 @@ def valida_item(iteracao):
 
     try:
         obj = OBJcertIntalado.certInstalado(iteracao)
-        print(obj.cliente.razao)
+        print(obj.cnpj)
 
     except:
 
