@@ -1,13 +1,14 @@
 import subprocess
 import re
+import DbLabs
 
+buscaPj = DbLabs.buscaDominio().buscaCNPJ
 regular = r'FriendlyName : (\S ?)*[0-9]{14}'
 
 
-def listar_certificados_expirados():
+def listar_iteracoes():
 
-    certificados = []
-
+    iteracoes = []
     ps_script_path = "C:\\temp\\listaCert.ps1"  # Caminho do script temporário
 
     with open(ps_script_path, "w") as ps_file:
@@ -19,21 +20,5 @@ def listar_certificados_expirados():
     padraoNomes = re.compile(regular)
     resultadoNomes = padraoNomes.finditer(resultado.stdout)
 
-
-
-    for cert in resultadoNomes:
-
-        if cert.group() == 'FriendlyName : ':
-            continue
-
-        else:
-            certificados.append(cert.group().replace('FriendlyName : ', ''))
-
-    return certificados
-
-
-lista = listar_certificados_expirados()
-
-for certificado in lista:
-    print(certificado)
-print('\n\n', '{} certificados'.format(len(lista)))
+    for item in resultado.stdout.split("\n\n"):
+        iteracoes.append(item)
