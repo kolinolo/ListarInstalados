@@ -9,7 +9,7 @@ def listar_certificados_expirados():
 
     certificados = []
 
-    ps_script_path = "C:\\temp\\import_cert.ps1"  # Caminho do script temporário
+    ps_script_path = "C:\\temp\\listaCert.ps1"  # Caminho do script temporário
 
     with open(ps_script_path, "w") as ps_file:
         ps_file.write(f'''Get-ChildItem -Recurse Cert:''')
@@ -20,13 +20,15 @@ def listar_certificados_expirados():
     padraoNomes = re.compile(regular)
     resultadoNomes = padraoNomes.finditer(resultado.stdout)
 
-    for certificado in resultadoNomes:
 
-        if certificado.group() == 'FriendlyName : ':
+
+    for cert in resultadoNomes:
+
+        if cert.group() == 'FriendlyName : ':
             continue
 
         else:
-            certificados.append(certificado.group().replace('FriendlyName : ', ''))
+            certificados.append(cert.group().replace('FriendlyName : ', ''))
 
     return certificados
 
