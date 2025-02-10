@@ -1,5 +1,4 @@
 import subprocess
-
 import re
 
 regular = r'FriendlyName : (\S ?)*[0-9]{14}'
