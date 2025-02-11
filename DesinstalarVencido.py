@@ -18,6 +18,7 @@ def listarVencidos():
             desinstalar(item)
     for item in vencidos:
         print(colorizar(item.origem,"vermelho"))
+    print(f"{len(vencidos)} Certificados vencidos desinstalados")
 
 
 def desinstalar(item):
@@ -25,9 +26,10 @@ def desinstalar(item):
     os.remove(fr"{os.path.expanduser("~")}\AppData\Roaming\Microsoft\SystemCertificates\My\Certificates\{item.thumbPrint}")
 
 
-
-
-
-
-
 listarVencidos()
+
+
+
+
+
+

@@ -34,6 +34,7 @@ def valida_item(iteracao):
         if obj.cnpj is None: return None
 
     except:
+
         return None
 
     return obj
