@@ -1,3 +1,4 @@
+import os
 import subprocess
 import OBJcertIntalado
 
@@ -29,11 +30,15 @@ def valida_item(iteracao):
 
     try:
         obj = OBJcertIntalado.certInstalado(iteracao)
-        print(obj.cnpj)
+
+        if obj.cnpj is None: return None
 
     except:
-
         return None
 
     return obj
+
+
+
+
 

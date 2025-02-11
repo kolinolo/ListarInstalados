@@ -13,17 +13,18 @@ class certInstalado:
         self.origem: str = stringOrigem
         self.thumbPrint = None
 
+        self.defineThumbPrint()
         self.defineCliente()
         self.defineValidade()
 
     def defineCliente(self):
 
-        padraoCnpj = re.compile(r"[0-9]{14}")
+        padraoCnpj = re.compile(r"FriendlyName : (\S ?)*[0-9]{14}")
         cnpj = padraoCnpj.finditer(self.origem)
 
 
         for match in cnpj:
-            self.cnpj = match.group()
+            self.cnpj = match.group()[-14:]
 
     def defineValidade(self):
 
@@ -40,7 +41,7 @@ class certInstalado:
 
     def defineThumbPrint(self):
 
-        padraoThumb = re.compile(r"/Thumbprint {3}: .*/gm")
+        padraoThumb = re.compile(r"Thumbprint {3}: .*")
         TP = padraoThumb.finditer(self.origem)
 
         for match in TP:
