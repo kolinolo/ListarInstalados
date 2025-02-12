@@ -45,7 +45,7 @@ class certInstalado:
         TP = padraoThumb.finditer(self.origem)
 
         for match in TP:
-            self.thumbPrint = match.group().replace("Thumbprint   : ", "")
+            self.thumbPrint = match.group().replace("Thumbprint   : ", "").replace("\r", "")
 
 
 

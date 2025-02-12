@@ -17,7 +17,7 @@ def listarVencidos():
             vencidos.append(item)
             desinstalar(item)
     for item in vencidos:
-        print(colorizar(item.origem,"vermelho"))
+        print(colorizar(item.origem, "vermelho"))
     print(f"{len(vencidos)} Certificados vencidos desinstalados")
 
 
@@ -27,7 +27,7 @@ def desinstalar(item):
 
 
 listarVencidos()
-
+input("Pressione enter para sair")
 
 
 
